@@ -1,6 +1,8 @@
 import json
 from abc import ABC, abstractmethod
 
+from src.vacancies import Vacancy
+
 
 class JSONAbstract(ABC):
     """Класс для добавления данных о вакансиях в файл,
@@ -23,7 +25,12 @@ class JSONSaver(JSONAbstract):
         self.__path = path
 
     def get_vacancies(self):
-        pass
+        with open(self.__path, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+        vacancies = []
+        for vacancy in data:
+            vacancies.append(Vacancy(**vacancy))
+        return vacancies
 
 
     def save_vacancies(self, vacancies: list[dict]):
