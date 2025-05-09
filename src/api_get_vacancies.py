@@ -28,7 +28,7 @@ class HeadHunterAPI(BaseHeadHunterAPI):
     def __init__(self):
         self.__api_url = "https://api.hh.ru/vacancies"
         self.__headers = {'User-Agent': 'HH-User-Agent'}
-        self.__params = {'text': '', 'page': 0, 'per_page': 100}
+        self.__params = {'text': '', 'page': 0, 'per_page': 10}
         self.__vacancies = []
 
     def _connect_to_api(self, keyword, pages: int = 1):
@@ -51,7 +51,22 @@ class HeadHunterAPI(BaseHeadHunterAPI):
         self._connect_to_api(keyword, pages)
         return self.__vacancies
 
+    @staticmethod
+    def new_view_vacancies(vacancies):
+        all_vacancies = []
+        for vacancy in vacancies:
+            all_vacancies.append({'name': vacancy['name'],
+                                  'url': vacancy['alternate_url'],
+                                  'salary': vacancy['salary'],
+                                  'description': vacancy['snippet']['requirement']})
+        return all_vacancies
+
 if __name__ == '__main__':
     hh_api = HeadHunterAPI()
-    hh_vacancies = hh_api.get_vacancies('Python')
-    print(hh_vacancies)
+    hh_vacancies = hh_api.get_vacancies('Python', 2)
+    vacancies = hh_api.new_view_vacancies(hh_vacancies)
+
+    for elem in vacancies:
+        print(elem)
+        print('------------------')
+    print(len(hh_vacancies))
