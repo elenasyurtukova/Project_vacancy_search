@@ -63,12 +63,13 @@ class HeadHunterAPI(BaseHeadHunterAPI):
 
 
 
-if __name__ == '__main__':
-    hh_api = HeadHunterAPI()
-    hh_vacancies = hh_api.get_vacancies('Python', 2)
-    vacancies = hh_api.new_view_vacancies(hh_vacancies)
-
-    for elem in vacancies:
-        print(elem)
-        print('------------------')
-    print(len(hh_vacancies))
+# if __name__ == '__main__':
+#     hh_api = HeadHunterAPI()
+#     hh_vacancies = hh_api.get_vacancies('Python', 2)
+#     print(hh_vacancies)
+    # vacancies = hh_api.new_view_vacancies(hh_vacancies)
+    #
+    # for elem in vacancies:
+    #     print(elem)
+    #     print('------------------')
+    # print(len(hh_vacancies))

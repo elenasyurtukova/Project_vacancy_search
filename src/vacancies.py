@@ -41,17 +41,6 @@ class Vacancy():
 Описание: {self.description}
 '''
 
-if __name__ == '__main__':
-    vac1 = Vacancy('Python-разработчик', 'https://hh.ru/vacancy/120331701', None, 'Опыт работы с <highlighttext>Python</highlighttext> от 1-го года . Опыт работы с одним или несколькими фреймворками: FastApi, Flask, Django, Django REST.')
-    vac2 = Vacancy('Junior backend разработчик', 'https://hh.ru/vacancy/120288418', {'from': None, 'to': 250000, 'currency': 'KZT', 'gross': False}, 'Опыт на любом языке программирования, как: C, C++, C#, Java, Go и т.д. (приветствуется опыт на функциональных языках программирования). - ')
-    vac3 = Vacancy('Junior backend разработчик', 'https://hh.ru/vacancy/120288418', {'from': None, 'to': 250000, 'currency': 'RUR', 'gross': False}, 'Опыт на любом языке программирования, как: C, C++, C#, Java, Go и т.д.')
-    # print(vac1.salary_from)
-    # print(vac1.salary_to)
-    # print(vac1.salary_currency)
-    # print(vac2.salary_from)
-    # print(vac2.salary_to)
-    # print(vac2.salary_currency)
-    # print(vac3.salary_currency)
-    print(vac1.__lt__(vac3))
+
 
 
