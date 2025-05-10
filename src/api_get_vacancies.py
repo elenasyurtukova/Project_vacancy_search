@@ -56,10 +56,12 @@ class HeadHunterAPI(BaseHeadHunterAPI):
         all_vacancies = []
         for vacancy in vacancies:
             all_vacancies.append({'name': vacancy['name'],
-                                  'url': vacancy['alternate_url'],
+                                  'url': vacancy['url'],
                                   'salary': vacancy['salary'],
                                   'description': vacancy['snippet']['requirement']})
         return all_vacancies
+
+
 
 if __name__ == '__main__':
     hh_api = HeadHunterAPI()

@@ -1,9 +1,10 @@
 class Vacancy():
     """Класс для работы с вакансиями"""
+    __slots__ = ('name', 'url', 'salary_from', 'salary_to', 'salary_currency', 'description')
     name: str
-    vacancy_url: str
+    url: str
     description: str
-    salary: int
+    salary: dict
 
 
     def __init__(self, name, url, salary, description):
@@ -36,6 +37,7 @@ class Vacancy():
         return f'''Название вакансии: {self.name}, 
 Ссылка на вакансию: {self.url}, 
 Зарплата: от {self.salary_from} до {self.salary_to}
+Валюта зарплаты: {self.salary_currency}
 Описание: {self.description}
 '''
 
