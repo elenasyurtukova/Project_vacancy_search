@@ -1,20 +1,17 @@
 from src.api_get_vacancies import HeadHunterAPI
 from src.json_saver import JSONSaver
-from src.utils import filtered_vacancies_rur, sorted_vacancies, print_top_vacancies, filtered_vacancies_by_words, \
-    get_vacancies_by_salary
+from src.utils import filtered_vacancies_rur, sorted_vacancies, print_top_vacancies, filtered_vacancies_by_words, get_vacancies_by_salary
 from src.vacancies import Vacancy
 
 print('Добро пожаловать на HeadHunter!')
 keyword = input('введите слово для поиска вакансий\n')
-number = int(input('введите количество вакансий, которые вы хотите получить - число от 1 до 100\n'))
+number = int(input('введите количество вакансий, которые вы хотите получить - число от 10 до 100\n'))
 pages = round(number/10, 0)
 hh_api = HeadHunterAPI()
 data = hh_api.get_vacancies(keyword, pages)
 hh_vacancies = hh_api.new_view_vacancies(data)
-# for elem in hh_vacancies:
-#     print(elem)
-#     print('----------')
-JSONSaver().save_vacancies(hh_vacancies)
+vacancies_for_write = JSONSaver().vacancies_for_write(hh_vacancies)
+JSONSaver().save_vacancies(vacancies_for_write)
 # print(json_data_list_of_dicts)
 list_vacancies = []
 for vacancy in hh_vacancies:

@@ -25,12 +25,17 @@ class JSONSaver(JSONAbstract):
         self.__path = path
 
     def get_vacancies(self):
-        with open(self.__path, 'r', encoding='utf-8') as f:
-            data = json.load(f)
-        vacancies = []
-        for vacancy in data:
-            vacancies.append(Vacancy(**vacancy))
-        return vacancies
+        try:
+            with open(self.__path, encoding="utf-8") as file:
+                try:
+                    data = json.load(file)
+                    return data
+                except json.JSONDecodeError:
+                    # print("Ошибка декодирования файла")
+                    return []
+        except FileNotFoundError:
+            # print("Файл не найден")
+            return []
 
 
     def save_vacancies(self, vacancies: list[dict]):
@@ -40,9 +45,24 @@ class JSONSaver(JSONAbstract):
         # for vacancy in vacancies:
         #     if vacancy not in data_in_list:
         #         vacancies_for_append.append(vacancy)
-        with open (self.__path, 'a', encoding='utf-8') as f:
+        with open (self.__path, 'w', encoding='utf-8') as f:
             json.dump(vacancies, f, ensure_ascii=False, indent=4)
 
 
     def delete_vacancies(self):
         open(self.__path, 'w').close()
+
+
+    def vacancies_for_write(self, vacancies):
+        data = JSONSaver().get_vacancies()
+        if data != []:
+            for vacancy in vacancies:
+                if vacancy not in data:
+                    data.append(vacancy)
+            return data
+        else:
+            return vacancies
+
+
+# if __name__ == '__main__':
+#     pass

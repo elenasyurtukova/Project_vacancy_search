@@ -41,6 +41,8 @@ class Vacancy():
 Описание: {self.description}
 '''
 
-
+    # @classmethod
+    # def cast_to_object_list(cls, vacancies: Vacancy):
+    #     pass
 
 

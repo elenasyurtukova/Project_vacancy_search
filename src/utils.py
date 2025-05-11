@@ -26,7 +26,7 @@ def filtered_vacancies_by_words(vacancies: list[dict], filter_words: list)-> lis
         for vacancy in vacancies:
             if not vacancy['description']:
                 continue
-            elif word in vacancy['description']:
+            elif word.lower() in vacancy['description'].lower():
                 filtered_vacancies.append(vacancy)
     return filtered_vacancies
 
