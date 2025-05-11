@@ -1,4 +1,3 @@
-import json
 import unittest
 from unittest.mock import patch
 
@@ -11,10 +10,16 @@ class TestJsonReader(unittest.TestCase):
     def test_get_vacancies(self: "TestJsonReader", mock_json_load, mock_open):
         # Задаю тестовые данные
         mock_json_load.return_value = [
-            {"name": "Аналитик данных",
-             "url": "https://api.hh.ru/vacancies/120353943?host=hh.ru",
-             "salary": {"from": 4000000, "to": 7000000, "currency": "UZS", "gross": True},
-             "description": "Опыт работы с BI-системами (Power BI, Tableau, Metabase и др.)"
+            {
+                "name": "Аналитик данных",
+                "url": "https://api.hh.ru/vacancies/120353943?host=hh.ru",
+                "salary": {
+                    "from": 4000000,
+                    "to": 7000000,
+                    "currency": "UZS",
+                    "gross": True,
+                },
+                "description": "Опыт работы с BI-системами (Power BI, Tableau, Metabase и др.)",
             }
         ]
 
@@ -23,10 +28,16 @@ class TestJsonReader(unittest.TestCase):
         self.assertEqual(
             result,
             [
-                {"name": "Аналитик данных",
-                 "url": "https://api.hh.ru/vacancies/120353943?host=hh.ru",
-                 "salary": {"from": 4000000, "to": 7000000, "currency": "UZS", "gross": True},
-                 "description": "Опыт работы с BI-системами (Power BI, Tableau, Metabase и др.)"
+                {
+                    "name": "Аналитик данных",
+                    "url": "https://api.hh.ru/vacancies/120353943?host=hh.ru",
+                    "salary": {
+                        "from": 4000000,
+                        "to": 7000000,
+                        "currency": "UZS",
+                        "gross": True,
+                    },
+                    "description": "Опыт работы с BI-системами (Power BI, Tableau, Metabase и др.)",
                 }
             ],
         )

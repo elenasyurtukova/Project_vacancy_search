@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+
 import requests
 from requests.exceptions import HTTPError, RequestException
 
@@ -15,6 +16,7 @@ class BaseHeadHunterAPI(ABC):
         :param keyword: Ключевое слово для поиска вакансий
         :return: None
         """
+
     @abstractmethod
     def get_vacancies(self, keyword: str) -> list:
         """
@@ -27,24 +29,26 @@ class BaseHeadHunterAPI(ABC):
 class HeadHunterAPI(BaseHeadHunterAPI):
     def __init__(self):
         self.__api_url = "https://api.hh.ru/vacancies"
-        self.__headers = {'User-Agent': 'HH-User-Agent'}
-        self.__params = {'text': '', 'page': 0, 'per_page': 10}
+        self.__headers = {"User-Agent": "HH-User-Agent"}
+        self.__params = {"text": "", "page": 0, "per_page": 10}
         self.__vacancies = []
 
     def _connect_to_api(self, keyword, pages: int = 1):
-        self.__params['text'] = keyword
+        self.__params["text"] = keyword
         try:
-            while self.__params.get('page') != pages:
-                response = requests.get(self.__api_url, headers=self.__headers, params=self.__params)
+            while self.__params.get("page") != pages:
+                response = requests.get(
+                    self.__api_url, headers=self.__headers, params=self.__params
+                )
                 response.raise_for_status()
-                vacancies = response.json().get('items', '')
+                vacancies = response.json().get("items", "")
                 self.__vacancies.extend(vacancies)
-                self.__params['page'] += 1
+                self.__params["page"] += 1
         except HTTPError as e:
             print(f"Ошибка API: {e}")
             return None
         except RequestException as e:
-            print(f'Сетевая ошибка: {e}')
+            print(f"Сетевая ошибка: {e}")
             return None
 
     def get_vacancies(self, keyword, pages: int = 1):
@@ -55,21 +59,24 @@ class HeadHunterAPI(BaseHeadHunterAPI):
     def new_view_vacancies(vacancies):
         all_vacancies = []
         for vacancy in vacancies:
-            all_vacancies.append({'name': vacancy['name'],
-                                  'url': vacancy['url'],
-                                  'salary': vacancy['salary'],
-                                  'description': vacancy['snippet']['requirement']})
+            all_vacancies.append(
+                {
+                    "name": vacancy["name"],
+                    "url": vacancy["url"],
+                    "salary": vacancy["salary"],
+                    "description": vacancy["snippet"]["requirement"],
+                }
+            )
         return all_vacancies
-
 
 
 # if __name__ == '__main__':
 #     hh_api = HeadHunterAPI()
 #     hh_vacancies = hh_api.get_vacancies('Python', 2)
 #     print(hh_vacancies)
-    # vacancies = hh_api.new_view_vacancies(hh_vacancies)
-    #
-    # for elem in vacancies:
-    #     print(elem)
-    #     print('------------------')
-    # print(len(hh_vacancies))
+# vacancies = hh_api.new_view_vacancies(hh_vacancies)
+#
+# for elem in vacancies:
+#     print(elem)
+#     print('------------------')
+# print(len(hh_vacancies))
