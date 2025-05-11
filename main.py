@@ -28,14 +28,16 @@ if cur_filter == 'да':
     vacancies_cur = filtered_vacancies_rur(list_of_dict)
 else:
     vacancies_cur = list_of_dict
-print(len(vacancies_cur))
+# print(vacancies_cur)
 
 salary_range = input("Введите диапазон зарплат: \n").split('-') # Пример: 100000 - 150000
 ranged_vacancies = get_vacancies_by_salary(vacancies_cur, salary_range)
+print(salary_range)
 print(len(ranged_vacancies))
 filter_words = input("Введите слова для фильтрации вакансий по описанию: \n").split()
 filtered_vacancies = filtered_vacancies_by_words(ranged_vacancies, filter_words)
-print(len(filtered_vacancies))
+# print(filter_words)
+# print(len(filtered_vacancies))
 flag = input('Отсортировать по возрастанию(1) или по убыванию(2)?\n'
                       'введите 1 или 2. Если сортировать не нужно, нажмите 0\n')
 sorted_vacancies = sorted_vacancies(filtered_vacancies, int(flag))

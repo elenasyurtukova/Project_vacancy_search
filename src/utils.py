@@ -27,7 +27,8 @@ def filtered_vacancies_by_words(vacancies: list[dict], filter_words: list)-> lis
             if not vacancy['description']:
                 continue
             elif word.lower() in vacancy['description'].lower():
-                filtered_vacancies.append(vacancy)
+                if vacancy not in filtered_vacancies:
+                    filtered_vacancies.append(vacancy)
     return filtered_vacancies
 
 def get_vacancies_by_salary(vacancies: list[dict], salary_range: list):

@@ -148,5 +148,16 @@
         "url": "https://api.hh.ru/vacancies/119207853?host=hh.ru",
         "salary": null,
         "description": "Знание основ электротехники, пневматики, схемотехники и промышленных протоколов связи (Profibus, Profinet, Ethernet/IP). Базовые знания <highlighttext>Python</highlighttext> для написания скриптов тестирования..."
+    },
+    {
+        "name": "Начинающий сотрудник поддержки ( удаленно, без продаж)",
+        "url": "https://api.hh.ru/vacancies/120361234?host=hh.ru",
+        "salary": {
+            "from": 38500,
+            "to": null,
+            "currency": "RUR",
+            "gross": false
+        },
+        "description": "У вас грамотная письменная речь. Любите много общаться по телефону. Наличие ПК/ноутбука, стабильного интернета и гарнитуры."
     }
 ]

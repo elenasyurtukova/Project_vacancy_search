@@ -39,3 +39,17 @@ def vacancies():
                            'snippet': {
                                'requirement': 'Опыт работы с <highlighttext>Python</highlighttext> от 1-го года',
                                'responsibility': None}}]
+
+
+@pytest.fixture
+def vacancies_for_rur():
+    return [{'name': 'Аналитик данных', 'url': 'https://api.hh.ru/vacancies/120353943?host=hh.ru',
+             'salary_from': 4000000, 'salary_to': 7000000, 'salary_currency': 'UZS',
+             'description': 'Опыт работы с BI-системами (Power BI, Tableau, Metabase и др.)'},
+            {'name': 'Python-разработчик', 'url': 'https://api.hh.ru/vacancies/120331701?host=hh.ru',
+             'salary_from': 0, 'salary_to': 350000, 'salary_currency': 'RUR',
+             'description': 'Опыт работы с <highlighttext>Python</highlighttext> от 1-го года.'},
+            {'name': 'Web-программист - стажер', 'url': 'https://api.hh.ru/vacancies/118711736?host=hh.ru',
+             'salary_from': 0, 'salary_to': 0, 'salary_currency': 'RUR',
+             'description': 'Carfast- Первый онлайн авто аукцион в Казахстане. Командный игрок.'}]
+
