@@ -21,6 +21,7 @@ class JSONAbstract(ABC):
 
 class JSONSaver(JSONAbstract):
     """Класс для записи/добавления в указанный файл или удаления данных из файла"""
+
     def __init__(self, path="data/vacancies.json"):
         self.__path = path
 

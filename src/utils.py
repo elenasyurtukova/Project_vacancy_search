@@ -47,10 +47,12 @@ def get_vacancies_by_salary(vacancies: list[dict], salary_range: list):
 def print_top_vacancies(vacancies: list[dict], top_n):
     """Функция: выводит в консоль топ N вакансий по запросу пользователя"""
     for i in range(top_n):
-        print(f"""Название вакансии: {vacancies[i]['name']}, 
+        print(
+            f"""Название вакансии: {vacancies[i]['name']}, 
 Ссылка на вакансию: {vacancies[i]['url']}, 
 Зарплата: от {vacancies[i]['salary_from']} до {vacancies[i]['salary_to']},
 Валюта зарплаты: {vacancies[i]['salary_currency']}, 
 Описание: {vacancies[i]['description']}
-""")
+"""
+        )
         print("_________________")

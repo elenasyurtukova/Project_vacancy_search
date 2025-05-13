@@ -1,5 +1,9 @@
-from src.utils import (filtered_vacancies_by_words, filtered_vacancies_rur,
-                       get_vacancies_by_salary, sort_vacancies)
+from src.utils import (
+    filtered_vacancies_by_words,
+    filtered_vacancies_rur,
+    get_vacancies_by_salary,
+    sort_vacancies,
+)
 
 
 def test_filtered_vacancies_rur(vacancies_for_rur):

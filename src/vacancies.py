@@ -15,7 +15,7 @@ class Vacancy:
     salary: dict
 
     def __init__(self, name, url, salary, description):
-        """Метод инициализации экземпляра класса вакансий """
+        """Метод инициализации экземпляра класса вакансий"""
         self.name = name
         self.url = url
         self.description = description
@@ -42,7 +42,6 @@ class Vacancy:
         else:
             raise TypeError("Невозможно сравнить объекты разных типов")
 
-
     def __le__(self, other):
         """Метод сравнения экземпляра класса вакансий с объектом other (оператор меньше или равно)"""
         if type(other) is Vacancy:
@@ -52,7 +51,6 @@ class Vacancy:
                 raise TypeError("Объекты сравнить нельзя ввиду разности валют")
         else:
             raise TypeError("Невозможно сравнить объекты разных типов")
-
 
     def __gt__(self, other):
         """Метод сравнения экземпляра класса вакансий с объектом other (оператор больше)"""
@@ -64,7 +62,6 @@ class Vacancy:
         else:
             raise TypeError("Невозможно сравнить объекты разных типов")
 
-
     def __ge__(self, other):
         """Метод сравнения экземпляра класса вакансий с объектом other (оператор больше или равно)"""
         if type(other) is Vacancy:
@@ -74,7 +71,6 @@ class Vacancy:
                 raise TypeError("Объекты сравнить нельзя ввиду разности валют")
         else:
             raise TypeError("Невозможно сравнить объекты разных типов")
-
 
     def __eq__(self, other):
         """Метод сравнения экземпляра класса вакансий с объектом other (оператор равенства)"""
@@ -86,7 +82,6 @@ class Vacancy:
         else:
             raise TypeError("Невозможно сравнить объекты разных типов")
 
-
     def __ne__(self, other):
         """Метод сравнения экземпляра класса вакансий с объектом other (оператор неравенства)"""
         if type(other) is Vacancy:
@@ -97,7 +92,6 @@ class Vacancy:
         else:
             raise TypeError("Невозможно сравнить объекты разных типов")
 
-
     def __str__(self):
         """Метод представления экземпляра класса в виде строки"""
         return f"""Название вакансии: {self.name}, 
@@ -106,4 +100,3 @@ class Vacancy:
 Валюта зарплаты: {self.salary_currency}
 Описание: {self.description}
 """
-

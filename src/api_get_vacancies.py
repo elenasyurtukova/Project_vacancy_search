@@ -28,6 +28,7 @@ class BaseHeadHunterAPI(ABC):
 
 class HeadHunterAPI(BaseHeadHunterAPI):
     """Класс для работы с API hh.ru"""
+
     def __init__(self):
         """Метод инициализации работы класса"""
         self.__api_url = "https://api.hh.ru/vacancies"
@@ -37,7 +38,7 @@ class HeadHunterAPI(BaseHeadHunterAPI):
 
     def _connect_to_api(self, keyword, pages: int = 1):
         """Метод подключения к API hh.ru, поиска вакансий по ключевому слову и
-         сохранения вакансий в список"""
+        сохранения вакансий в список"""
         self.__params["text"] = keyword
         try:
             while self.__params.get("page") != pages:
