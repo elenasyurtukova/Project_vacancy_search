@@ -30,6 +30,54 @@ def test_vacancy_lt_error(vacancy1, vacancy2):
         vacancy1.__lt__(1000)
 
 
+def test_vacancy_gt(vacancy1, vacancy3):
+    assert vacancy1.__gt__(vacancy3) is False
+
+
+def test_vacancy_gt_error(vacancy1, vacancy2):
+    with pytest.raises(TypeError, match="Объекты сравнить нельзя ввиду разности валют"):
+        vacancy1.__gt__(vacancy2)
+
+    with pytest.raises(TypeError, match="Невозможно сравнить объекты разных типов"):
+        vacancy1.__gt__(1000)
+
+
+def test_vacancy_le(vacancy1, vacancy3):
+    assert vacancy1.__le__(vacancy3) is True
+
+
+def test_vacancy_le_error(vacancy1, vacancy2):
+    with pytest.raises(TypeError, match="Объекты сравнить нельзя ввиду разности валют"):
+        vacancy1.__le__(vacancy2)
+
+    with pytest.raises(TypeError, match="Невозможно сравнить объекты разных типов"):
+        vacancy1.__le__(1000)
+
+
+def test_vacancy_eq(vacancy1, vacancy3):
+    assert vacancy1.__eq__(vacancy3) is True
+
+
+def test_vacancy_eq_error(vacancy1, vacancy2):
+    with pytest.raises(TypeError, match="Объекты сравнить нельзя ввиду разности валют"):
+        vacancy1.__eq__(vacancy2)
+
+    with pytest.raises(TypeError, match="Невозможно сравнить объекты разных типов"):
+        vacancy1.__le__(1000)
+
+
+def test_vacancy_ne(vacancy1, vacancy3):
+    assert vacancy1.__ne__(vacancy3) is False
+
+
+def test_vacancy_ne_error(vacancy1, vacancy2):
+    with pytest.raises(TypeError, match="Объекты сравнить нельзя ввиду разности валют"):
+        vacancy1.__ne__(vacancy2)
+
+    with pytest.raises(TypeError, match="Невозможно сравнить объекты разных типов"):
+        vacancy1.__ne__(1000)
+
+
 def test_vacancy_str(vacancy3):
     assert str(vacancy3) == (
         "Название вакансии: Backend разработчик, \n"

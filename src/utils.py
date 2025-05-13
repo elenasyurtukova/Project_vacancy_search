@@ -34,6 +34,7 @@ def filtered_vacancies_by_words(
 
 
 def get_vacancies_by_salary(vacancies: list[dict], salary_range: list):
+    """Функция фильтрации вакансий по заданному диапазону зарплаты"""
     ranged_vacancies = []
     for vacancy in vacancies:
         if vacancy["salary_from"] >= int(salary_range[0]) and vacancy[
@@ -44,6 +45,7 @@ def get_vacancies_by_salary(vacancies: list[dict], salary_range: list):
 
 
 def print_top_vacancies(vacancies: list[dict], top_n):
+    """Функция: выводит в консоль топ N вакансий по запросу пользователя"""
     for i in range(top_n):
         print(f"""Название вакансии: {vacancies[i]['name']}, 
 Ссылка на вакансию: {vacancies[i]['url']}, 
