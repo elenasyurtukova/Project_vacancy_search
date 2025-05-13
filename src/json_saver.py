@@ -20,10 +20,12 @@ class JSONAbstract(ABC):
 
 
 class JSONSaver(JSONAbstract):
+    """Класс для записи/добавления в указанный файл или удаления данных из файла"""
     def __init__(self, path="data/vacancies.json"):
         self.__path = path
 
     def get_vacancies(self):
+        """Метод получения данных о вакансиях из указанного файла"""
         try:
             with open(self.__path, encoding="utf-8") as file:
                 try:
@@ -37,13 +39,16 @@ class JSONSaver(JSONAbstract):
             return []
 
     def save_vacancies(self, vacancies: list[dict]):
+        """Метод сохранения вакансий в файл"""
         with open(self.__path, "w", encoding="utf-8") as f:
             json.dump(vacancies, f, ensure_ascii=False, indent=4)
 
     def delete_vacancies(self):
+        """Метод очистки содержимого файла"""
         open(self.__path, "w").close()
 
     def vacancies_for_write(self, vacancies):
+        """Метод получения данных о вакансиях для записи в файл, минуя дубликаты"""
         data = JSONSaver().get_vacancies()
         if data != []:
             for vacancy in vacancies:
@@ -52,7 +57,3 @@ class JSONSaver(JSONAbstract):
             return data
         else:
             return vacancies
-
-
-# if __name__ == '__main__':
-#     pass

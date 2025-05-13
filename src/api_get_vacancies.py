@@ -27,23 +27,27 @@ class BaseHeadHunterAPI(ABC):
 
 
 class HeadHunterAPI(BaseHeadHunterAPI):
+    """Класс для работы с API hh.ru"""
     def __init__(self):
+        """Метод инициализации работы класса"""
         self.__api_url = "https://api.hh.ru/vacancies"
         self.__headers = {"User-Agent": "HH-User-Agent"}
         self.__params = {"text": "", "page": 0, "per_page": 10}
         self.__vacancies = []
 
     def _connect_to_api(self, keyword, pages: int = 1):
+        """Метод подключения к API hh.ru, поиска вакансий по ключевому слову и
+         сохранения вакансий в список"""
         self.__params["text"] = keyword
         try:
             while self.__params.get("page") != pages:
                 response = requests.get(
                     self.__api_url, headers=self.__headers, params=self.__params
                 )
-                response.raise_for_status()
-                vacancies = response.json().get("items", "")
-                self.__vacancies.extend(vacancies)
-                self.__params["page"] += 1
+                if response.status_code == 200:
+                    vacancies = response.json().get("items", "")
+                    self.__vacancies.extend(vacancies)
+                    self.__params["page"] += 1
         except HTTPError as e:
             print(f"Ошибка API: {e}")
             return None
@@ -52,11 +56,13 @@ class HeadHunterAPI(BaseHeadHunterAPI):
             return None
 
     def get_vacancies(self, keyword, pages: int = 1):
+        """Метод: возвращает список вакансий, найденных по ключевому слову"""
         self._connect_to_api(keyword, pages)
         return self.__vacancies
 
     @staticmethod
     def new_view_vacancies(vacancies):
+        """Метод: возвращает найденные вакансии только с нужными ключами"""
         all_vacancies = []
         for vacancy in vacancies:
             all_vacancies.append(
